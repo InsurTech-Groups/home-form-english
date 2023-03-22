@@ -6,6 +6,11 @@ import tailwindcss from 'tailwindcss'
 export default defineConfig({
   plugins: [react()],
 
+  preview: {
+    port: 3000,
+    open: true,
+  },
+
   optimizeDeps: {
     include: ['linked-dep'],
   },
