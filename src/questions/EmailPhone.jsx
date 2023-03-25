@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { userData } from '../data/userData';
 import axios from 'axios';
 import PhoneInput from "react-phone-number-input/input";
+import { emailData, phoneData } from '../data/addToUserData';
 import { postDataToJangle } from '../data/postToJangle';
 
 
@@ -17,7 +18,9 @@ const EmailPhone = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isAutoCorrect, setIsAutoCorrect] = useState(false)
   const [autoCorrectText, setAutoCorrectText] = useState('')
-  const aK = import.meta.VITE_PHONE_API_KEY;
+  const aK = import.meta.env.VITE_PHONE_API_KEY;
+  const apiKey = import.meta.env.VITE_EMAIL_API_KEY; 
+
 
 
   let e = userData.email;
@@ -34,20 +37,16 @@ const EmailPhone = () => {
   function changeText() {
     document.getElementById('email').value = autoCorrectText;
     setIsAutoCorrect(false);
-
-          //TODO: Add autoCorrectText to userData    
+    emailData(autoCorrectText)
   }
 
   const handleEmail = (e) => {
 
-    const apiKey = import.meta.VITE_EMAIL_API_KEY; 
 let email = document.getElementById('email').value
 
 
-    console.log(email)
     axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${email}`)
     .then(response => {
-      console.log(response.data);
 
       let data = response.data;
 
@@ -56,7 +55,6 @@ let email = document.getElementById('email').value
       let delivery = data.deliverability
       let format = data.is_valid_format.value;
  
-      console.log(format)
       if (autoCorrect != ''){
         setIsAutoCorrect(true)
         setAutoCorrectText(autoCorrect)
@@ -78,11 +76,11 @@ let email = document.getElementById('email').value
         return
       }
       else {
-      //TODO: Add to userData
+      
+        emailData(email);
     }
     })
     .catch(error => {
-      console.log(error);
       toast.error('There seems to be a problem checking your email...')
     });
    
@@ -94,7 +92,6 @@ let email = document.getElementById('email').value
 
     let phone = document.getElementById('phone_home').value 
 
-    console.log('ak', aK)
 
     //remove () and - from phone
     phone = phone.replace(/[- )(]/g, '');
@@ -107,7 +104,6 @@ let email = document.getElementById('email').value
 
       let valid = data.valid;
 
-      console.log(valid)
 
       if (!valid) {
 
@@ -116,13 +112,12 @@ let email = document.getElementById('email').value
         return
       }
       else {
-      //TODO: Add to userData
-      postDataToJangle();
+        phoneData(phone);
+      //postDataToJangle();
         navigate('/submit')
       }
     })
     .catch(error => {
-      console.log(error);
       toast.error('There seems to be a problem checking your phone number...')
     });
 
@@ -170,9 +165,9 @@ let email = document.getElementById('email').value
                   
                   {
                     isAutoCorrect ? (
-                      <a className='text-white text-sm text-center mx-auto pt-1 cursor-pointer'  onClick={changeText}>
+                      <a className='text-white text-md text-center mx-auto pt-1 cursor-pointer'  onClick={changeText}>
                     
-      Did you mean <span className='font-bold underline'>{autoCorrectText}</span>?
+      Did you mean <span className='font-bold underline decoration-pink-500'>{autoCorrectText}</span>?
     </a>
                     ) : (<div></div>)
                   }

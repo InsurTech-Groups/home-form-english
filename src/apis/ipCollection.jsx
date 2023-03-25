@@ -11,7 +11,7 @@ export const ipAddress = async (ip) => {
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log('ip info', data)
+     
 
       userData.ip = data.ip_address;
       userData.timezone = data.timezone.name

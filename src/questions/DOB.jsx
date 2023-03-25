@@ -6,35 +6,22 @@ import CTA from "../components/CTA";
 import { LinkWithQuery } from "../components/BackButton";
 import { toast } from "react-toastify";
 import { userData } from "../data/userData";
-import { expireInsuranceData } from "../data/addToUserData";
+import { dobData } from "../data/addToUserData";
 
-const ExpireInsurance = () => {
+const DOB = () => {
+
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [expDate, setExpDate] = useState("");
-  const [isExpired, setIsExpired] = useState(false);
+  const [bDate, setBDate] = useState("");
+  const [isSet, setIsSet] = useState(false);
+  let v = userData.dob;
   const navigate = useNavigate();
-  let company = userData.insurance_company;
-  const v = userData.expiration_date;
 
   useEffect(() => {
     if (v !== "") {
       setIsButtonDisabled(false);
-      setExpDate(v);
+      setBDate(v);
     }
   }, []);
-
-  const nextStep = (e) => {
-    e.preventDefault();
-    if (expDate !== "") {
-      expireInsuranceData(expDate);
-      navigate("/home-type");
-    }
-    else {
-      toast.error('Please enter a valide date');
-      return
-    }
-   
-  };
 
   const handleExpDateChange = (event) => {
     toast.dismiss();
@@ -47,23 +34,36 @@ const ExpireInsurance = () => {
     const datePattern = /(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}/;
     const isMatch = input.match(datePattern) !== null;
 
-    setExpDate(input);
+    setBDate(input);
 
     // Compare the input date to the current date if the input is a valid date
     if (isMatch) {
       const currentDate = new Date();
       const inputDate = new Date(input);
-      const isExpired = inputDate.getTime() < currentDate.getTime();
-      setIsExpired(isExpired);
+      const isExpired = inputDate.getTime() > currentDate.getTime();
+      setIsSet(isExpired);
 
       // Show a toast notification if the input date is expired
       if (isExpired) {
-        toast.error("The input date is expired.");
+        toast.error("The input date is not valid.");
         return;
       } else {
         setIsButtonDisabled(false);
       }
     }
+  };
+
+  const nextStep = (e) => {
+    e.preventDefault();
+    if (bDate !== "") {
+      dobData(bDate);
+      navigate("/claims");
+    }
+    else {
+      toast.error('Please enter a valide date');
+      return
+    }
+   
   };
 
   return (
@@ -73,14 +73,9 @@ const ExpireInsurance = () => {
         <div className="m-w-1/2 space-y-8">
           <div>
             <h2 className="mt-4 text-center text-4xl font-extrabold text-white">
-              When does your{" "}
-              <span className="underline decoration-pink-500">
-                {/* if company is Other than change it to current else leave as is */}
-                {company === "Other" ? "current" : company}
-              </span>{" "}
-              policy{" "}
+              When Is Your{" "}
               <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 xl:inline">
-                Expire
+                Birthday
               </span>
               ?
             </h2>
@@ -95,7 +90,7 @@ const ExpireInsurance = () => {
                   placeholder="MM/DD/YYYY"
                   pattern="(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}"
                   required
-                  value={expDate}
+                  value={bDate}
                   onChange={handleExpDateChange}
                   className="w-full lg:text-xl text-center bg-input-purple text-white text-md rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-5 p-2.5"
                 />
@@ -116,13 +111,13 @@ const ExpireInsurance = () => {
               </button>
             </div>
 
-            <LinkWithQuery to="/current-insurance">Back</LinkWithQuery>
+            <LinkWithQuery to="/gender">Back</LinkWithQuery>
           </form>
         </div>
       </div>
       <CTA />
     </div>
-  );
-};
+  )
+}
 
-export default ExpireInsurance;
+export default DOB

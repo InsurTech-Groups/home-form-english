@@ -41,7 +41,6 @@ export default function ThankYou() {
 
       </div>
     </div>
-    <Lottie animationData={BusinessInsurance} loop={true} style={{height: '300px'}}  />
         <WhyUsFeatures />
         <div className="elfsight-app-c43abc95-912b-4592-8284-6ee3d320a5a8 w-full mb-5 pb-4 bg-input-purple"></div>
 

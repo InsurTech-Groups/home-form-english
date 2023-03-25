@@ -87,7 +87,7 @@ const HomeType = () => {
                 );
               })}
             </div>
-            <LinkWithQuery to="/expired-insurance">Back</LinkWithQuery>
+            <LinkWithQuery to="/expire-insurance">Back</LinkWithQuery>
           </form>
         </div>
       </div>

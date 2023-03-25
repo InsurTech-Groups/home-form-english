@@ -9,6 +9,8 @@ import { ipAddress } from './apis/ipCollection';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LandingPage from './pages/LandingPage';
+import { userData as defaultUserData } from './data/userData';
+
 
 
 const InsuranceStatus = lazy(() => import('./questions/InsuranceStatus')); 
@@ -19,7 +21,9 @@ const Ownership = lazy(() => import('./questions/Ownership'));
 const Bedrooms = lazy(() => import('./questions/Bedrooms'));
 const YearBuilt = lazy(() => import('./questions/YearBuilt'));
 const SquareFootage = lazy(() => import('./questions/SquareFootage'));
-
+const Gender = lazy(() => import('./questions/Gender'));
+const DOB = lazy(() => import('./questions/DOB')); 
+const Claims = lazy(() => import('./questions/Claims'));
 const Address = lazy(() => import('./questions/Address'));
 const Name = lazy(() => import('./questions/Name'));
 const EmailPhone = lazy(() => import('./questions/EmailPhone'));
@@ -29,12 +33,28 @@ const ThankYou = lazy(() => import('./questions/ThankYou'));
 
 export default function App() {
   useEffect(() => {
-    sessionStorage.setItem('userData local', userData)
-    ipAddress();
+    // Save userData to session storage when the user reloads or leaves the page
+    window.addEventListener('beforeunload', (event) => {
+      sessionStorage.setItem('userData', JSON.stringify(userData));
+      event.returnValue = 'Are you sure you want to leave?';
+    });
+
+    // Check if there is userData in session storage and update the userData object
+    const storedUserData = sessionStorage.getItem('userData');
+    if (storedUserData) {
+      try {
+        const parsedUserData = JSON.parse(storedUserData);
+        Object.assign(userData, parsedUserData);
+      } catch (error) {
+        console.error('Error parsing stored userData', error);
+      }
+    }
+
   }, [])
 
- 
-
+  useEffect(() => {
+    ipAddress();
+  }, [])
 
 
   return (
@@ -54,7 +74,9 @@ export default function App() {
           <Route path='/bedrooms' element={<Bedrooms />} />
           <Route path='/year-built' element={<YearBuilt />} />
           <Route path='/square-footage' element={<SquareFootage />} />
-
+          <Route path='/gender' element={<Gender />} />
+          <Route path='/dob' element={<DOB />} />
+          <Route path='/claims' element={<Claims />} />
           <Route path='/address' element={<Address />} />
           <Route path='/name' element={<Name />} />
           <Route path='/email-phone' element={<EmailPhone />} />

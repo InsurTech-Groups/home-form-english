@@ -6,7 +6,8 @@ import CTA from "../components/CTA";
 import { LinkWithQuery } from "../components/BackButton";
 import { toast } from "react-toastify";
 import { userData } from "../data/userData";
-import { AddressAutofill } from "@mapbox/search-js-react";
+import { AddressAutofill } from "@mapbox/search-js-react"; 
+import { addressData } from "../data/addToUserData";
 
 function Address() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ function Address() {
     else {
       street = street + ' ' + secondary;
 
-      //TODO: Add to userData
+      addressData(street)
     navigate('/name')
     }
 
@@ -63,7 +64,7 @@ function Address() {
             <h2 className="mt-4 text-center text-4xl font-extrabold text-white">
               What is your current{" "}
               <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 xl:inline">
-                Business Address
+                Home Address
               </span>
               ?
             </h2>
@@ -142,7 +143,6 @@ function Address() {
                     type="text"
                     defaultValue={c}
                     label="city"
-                    readOnly={true}
 
                 placeholder="City"
                 autoComplete="address-level2"
@@ -158,7 +158,6 @@ function Address() {
                 name="state"
                 type="text"
                     label="state"
-                    readOnly={true}
 defaultValue={st}
                 placeholder="State"
                 autoComplete="address-level1"
@@ -176,7 +175,6 @@ defaultValue={st}
                 type="text"
                 label="zipcode"
                     placeholder="Zipcode"
-                    readOnly={true}
                     defaultValue={z}
 
                 autoComplete="postal-code"
@@ -206,7 +204,7 @@ defaultValue={st}
               </button>
             </div>
 
-            <LinkWithQuery to="/employees">Back</LinkWithQuery>
+            <LinkWithQuery to="/claims">Back</LinkWithQuery>
           </form>
         </div>
       </div>

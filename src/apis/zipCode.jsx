@@ -64,7 +64,7 @@ function ZipCode() {
       let state = res.region_code;
       let ip = res.ip
 
-      console.log('user ip', ip)
+  
 
       localStorage.setItem('ip', ip)
 
@@ -77,7 +77,7 @@ function ZipCode() {
     
     })
       .catch((err) => {
-        //Bugsnag.notify(err)
+        Bugsnag.notify(err)
         toast.error('There Seems To Be An Error With Your Location, Try Again Later')
       })
 
@@ -119,7 +119,7 @@ function ZipCode() {
         })
         .catch((err) => {
           toast.error("Invalid Zip Code");
-          //Bugsnag.notify(err)
+          Bugsnag.notify(err)
         })
       
     }

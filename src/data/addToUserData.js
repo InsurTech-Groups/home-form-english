@@ -13,7 +13,6 @@ export const landingPageData = (id, zipCodeValue, cityValue, stateValue) => {
 
   userData.trusted_form_token = tF;
 
-  console.log('userData', userData);
 
 };
 
@@ -23,7 +22,6 @@ export const noInsuranceData = (insurance, expirationDate, coverageType) => {
   userData.expiration_date = expirationDate;
   userData.coverage_type = coverageType;
 
-  console.log('userData', userData);
 
 };
 
@@ -31,14 +29,12 @@ export const insuranceCompanyData = (company) => {
 
   userData.insurance_company = company;
 
-  console.log('userData', userData);
 
 };
 
 export const expireInsuranceData = (expires) => {
 
   userData.expiration_date = expires;
-  console.log('userData', userData);
 
 
 };
@@ -46,34 +42,72 @@ export const expireInsuranceData = (expires) => {
 export const homeTypeData = (homeType) => {
   
     userData.home_type = homeType;
-    console.log('userData', userData);
   
 };
 
 export const ownershipData = (ownership) => {
   
     userData.ownership = ownership;
-    console.log('userData', userData);
   
 };  
 
 export const bedroomsData = (bedrooms) => {
     
       userData.bedrooms = bedrooms;
-      console.log('userData', userData);
     
 };
 
 export const yearBuiltData = (yearBuilt) => {
       
         userData.year_built = yearBuilt;
-        console.log('userData', userData);
       
 };
 
 export const squareFootageData = (squareFootage) => {
 
   userData.square_footage = squareFootage;
-  console.log('userData', userData);
 
+};
+
+export const genderData = (gender) => {
+
+  userData.gender = gender;
+
+};
+
+export const dobData = (dob) => {
+  
+    userData.dob = dob;
+  
+};
+
+export const claimsData = (claims) => {
+    
+      userData.claims = claims;
+    
+};
+
+export const addressData = (address) => {
+
+  userData.address = address;
+
+};
+
+export const nameData = (first, last) => {
+  
+    userData.first_name = first;
+    userData.last_name = last;
+  
+};
+
+export const emailData = (email) => {
+      
+        userData.email = email;
+      
+};
+
+export const phoneData = (phone) => {
+          
+            userData.phone = phone;
+          
 };

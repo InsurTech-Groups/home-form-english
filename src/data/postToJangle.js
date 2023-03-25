@@ -1,84 +1,117 @@
 import { userData } from "./userData";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Bugsnag from "@bugsnag/js";
 
 export const postDataToJangle = async () => {
 
   //get current date
   var today = new Date();
-  console.log(today)
 
 
-  let userId = userData.userId
-  let ip = userData.ip
-  let zipCode = userData.zip_code
-  let city = userData.city
-  let state = userData.state
-  let trustedForm = userData.trustedForm
-  let businessName = userData.business_name
-  let coverage = userData.coverage_needed
-  let businessStructure = userData.business_structure
-  let businessProfession = userData.business_profession
-  let businessFounded = userData.business_founded
-  let businessRevenue = userData.business_revenue
-  let businessEmployees = userData.business_employees
-  let businessAddress = userData.business_address
-  let businessCity = userData.business_city
-  let  businessState = userData.business_state
-  let businessZipcode = userData.business_zipcode
-  let firstName = userData.first_name
-  let lastName = userData.last_name
-  let email = userData.email
-  let phone = userData.phone
+  let bedrooms = userData.bedrooms;
+  let city = userData.city;
+  let claims = userData.claims;
+  let dob = userData.dob;
+  let expiration_date = userData.expiration_date;
+  let formType = userData.form_type;
+  let gender = userData.gender;
+  let home_type = userData.home_type;
+  let insurance_company = userData.insurance_company;
+  let ip = userData.ip;
+  let ownership = userData.ownership;
+  let square_footage = userData.square_footage;
+  let state = userData.state;
+  let timezone = userData.timezone;
+  let timezoneEasy = userData.timezoneEasy;
+  let trusted_form_token = userData.trusted_form_token;
+  let year_built = userData.year_built;
+  let zip = userData.zip_code;
+  let first_name = userData.first_name;
+  let last_name = userData.last_name;
+  let email = userData.email;
+  let phone = userData.phone;
+  let address = userData.address;
+
+
 
 
     let data = {
-    "meta": {
-      "originally_created": today,
-      "originally_created_by": userId,
-      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
-      "landing_page_url": "https://www.commercial.insurtechgroups.com",
-      "tcpa_compliant": true,
-        'tcpa_consent_text': "By clicking Get My Free Quote below, I am agreeing to receive text messages from InsurTech Groups and business partners. I provide my signature expressly consenting to recurring contact from Insurtech Groups or its business partners at the number I provided regarding products or services via live, automated or prerecorded telephone call, text message, or email. I understand that my telephone company may impose charges on me for these contacts, and I am not required to enter into this agreement as a condition of purchasing property, goods, or services. I understand that I can revoke this consent at any time. Terms & conditions & Privacy policy apply.",
-      'trusted_form_url': ''
-      },
 
-      "contact": {
-        "first_name": firstName,
-        "last_name": lastName,
-        "email": email,
-        "phone": phone,
-        
-        "city": city,
-        "state": state,
-        "zip_code": zipCode,
-        "ip_address": ip
+      meta: {
+        originally_created: today,
+        trusted_form_cert_url: trusted_form_token,
+        user_agent: Navigator.userAgent,
+        landing_page_url: "https://www.home.insurtechgroups.com",
+        tcpa_compliant: true,
+        tcpa_consent_text: "By clicking Get My Free Quote below, I am agreeing to receive text messages from InsurTech Groups and business partners. I provide my signature expressly consenting to recurring contact from Insurtech Groups or its business partners at the number I provided regarding products or services via live, automated or prerecorded telephone call, text message, or email. I understand that my telephone company may impose charges on me for these contacts, and I am not required to enter into this agreement as a condition of purchasing property, goods, or services. I understand that I can revoke this consent at any time. Terms & conditions & Privacy policy apply."
       },
-      "data": {
-        
-    }
-      
-  
-  
+    
+      contact: {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        phone: phone,
+        address: address,
+        city: city,
+        state: state,
+        zip_code: zip,
+        ip_address: ip,
+      },
+    
+      data: {
+        birth_date: dob,
+        gender: gender,
+        marital_status: "Single",
+        properties: [
+          {
+            property_type: home_type,
+            ownership: ownership,
+            occupancy: bedrooms,
+            year_built: year_built,
+            zip_code: zip,
+            square_footage: square_footage,
+    
+          }
+        ],
+    
+        requested_policy: {
+          coverage_type: "Superior",
+    
+        },
+          
+        current_policy: {
+          insurance_company: insurance_company,
+          expiration_date: expiration_date,
+          coverage_type: "Superior",
+        }
+      }
   }
-
-
-  fetch('https://hooks.zapier.com/hooks/catch/13124392/3bsi2io/', {
-    method: 'POST',
   
-    body: data
+
+  fetch('https://api.jangl.com/v2/home_insurance/capture', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Token 07a0e7ada9a4f2c9d4fdc2a01e8599c8e975ae12'
+    },
+    body: JSON.stringify(data)
+
   })
     .then(response => response.json())
     .then(data => {
-      toast.success('Form Submitted');
-      console.log(data)
+      toast.success('Your Form Has Been Submitted!')
     })
     .catch((error) => {
-      toast.error('Error in submitting your form!')
-      return
+      toast.error('There was an error submitting your form. Please try again.')
+      Bugsnag._notify(error, function (event) {
+        event.severity = "error";
+      });
+      console.error('Error:', error);
     });
+}
+    
+
+      
   
 
-
-
-}
