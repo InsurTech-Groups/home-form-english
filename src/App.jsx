@@ -2,12 +2,14 @@ import React, { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Lottie from 'lottie-react';
+import Loading from './assets/Loader.json';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { userData } from './data/userData';
 import { ipAddress } from './apis/ipCollection';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LandingPage from './pages/LandingPage';
+
 
 const InsuranceStatus = lazy(() => import('./questions/InsuranceStatus')); 
 const CurrentInsurance = lazy(() => import('./questions/CurrentInsurance'));
@@ -32,9 +34,9 @@ export default function App() {
   }, [])
 
  
-  const Loading = import('./assets/Loading.json');
 
-  
+
+
   return (
     <div>
       <NavBar />
