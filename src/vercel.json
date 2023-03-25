@@ -2,6 +2,13 @@
   "version": 2,
   "builds": [
     {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "75mb"
+      }
+    },
+    {
       "src": "index.html",
       "use": "@vercel/static-build",
       "config": {
@@ -19,12 +26,14 @@
             "BUILD_DIR": "$VERCEL_BUILD_OUTPUT_DIR"
           }
         },
-        
         "files": [
-          "index.html",
+          "dist/**/*",
+          "public/**/*",
           "src/**/*.{js,jsx,ts,tsx}",
           "tailwind.config.cjs",
-          "vite.config.js"
+          "vite.config.js",
+          "package.json",
+          "!**/node_modules/**"
         ]
       }
     }
@@ -34,8 +43,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
