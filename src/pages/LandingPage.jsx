@@ -3,6 +3,7 @@ import "../styles/LandingPage.css";
 import LandingHeaderPic from "../assets/HeaderImage.jpg";
 import { BoltIcon, GlobeAltIcon, ScaleIcon } from "@heroicons/react/24/outline";
 import Loading from '../assets/Loader.json';
+import Lottie from 'lottie-react';
 
 import ZipCode from "../apis/zipCode";
 import FAQ from "../components/faq";
