@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import "../styles/LandingPage.css";
 import LandingHeaderPic from "../assets/HeaderImage.jpg";
 import { BoltIcon, GlobeAltIcon, ScaleIcon } from "@heroicons/react/24/outline";
+import Loading from '../assets/Loader.json';
+
 import ZipCode from "../apis/zipCode";
 import FAQ from "../components/faq";
 import { ipAddress } from "../apis/ipCollection";
 import { trustedForm } from "../apis/trustedForm";
-import GetMoreQuotes from "../components/GetMoreQuotes";
+
+const GetMoreQuotes = lazy(() => import("../components/GetMoreQuotes"));
+
 function LandingPage() {
   let formType = `Home Insurance`;
 
@@ -94,7 +98,12 @@ function LandingPage() {
 
       <FAQ />
 
+      <Suspense fallback={<div className='bg-input-purple w-full h-full content-center'>
+      <Lottie animationData={Loading} loop={true} className="w-80 h-80 mx-auto" />
+      </div>}>
       <GetMoreQuotes />
+
+      </Suspense>
     </div>
   );
 }
