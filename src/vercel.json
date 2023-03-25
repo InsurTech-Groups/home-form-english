@@ -30,9 +30,6 @@
           "dist/**/*",
           "public/**/*",
           "src/**/*.{js,jsx,ts,tsx}",
-          "tailwind.config.cjs",
-          "vite.config.js",
-          "package.json",
           "!**/node_modules/**"
         ]
       }
