@@ -70,3 +70,10 @@ export const yearBuiltData = (yearBuilt) => {
         console.log('userData', userData);
       
 };
+
+export const squareFootageData = (squareFootage) => {
+
+  userData.square_footage = squareFootage;
+  console.log('userData', userData);
+
+};

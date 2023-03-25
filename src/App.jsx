@@ -17,6 +17,7 @@ const HomeType = lazy(() => import('./questions/HomeType'));
 const Ownership = lazy(() => import('./questions/Ownership'));
 const Bedrooms = lazy(() => import('./questions/Bedrooms'));
 const YearBuilt = lazy(() => import('./questions/YearBuilt'));
+const SquareFootage = lazy(() => import('./questions/SquareFootage'));
 
 const Address = lazy(() => import('./questions/Address'));
 const Name = lazy(() => import('./questions/Name'));
@@ -48,6 +49,7 @@ export default function App() {
           <Route path='/ownership' element={<Ownership />} />
           <Route path='/bedrooms' element={<Bedrooms />} />
           <Route path='/year-built' element={<YearBuilt />} />
+          <Route path='/square-footage' element={<SquareFootage />} />
 
           <Route path='/address' element={<Address />} />
           <Route path='/name' element={<Name />} />
