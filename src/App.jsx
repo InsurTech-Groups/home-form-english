@@ -2,7 +2,7 @@ import React, { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Lottie from 'lottie-react';
-import Loading from "./assets/Loading.json"
+import Loading from './assets/Loading.json'
 import 'react-toastify/dist/ReactToastify.min.css';
 import { userData } from './data/userData';
 import { ipAddress } from './apis/ipCollection';
