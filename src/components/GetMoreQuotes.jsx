@@ -34,7 +34,6 @@ const GetMoreQuotes = () => {
         <div className="mx-auto mt-2 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {quotes.map((quote) => (
             <a href={quote.href} key={quote.id}>
-              <LazyLoad height={200} once>
               <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl  bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
                 
                   <img src={quote.imageUrl} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
@@ -53,7 +52,6 @@ const GetMoreQuotes = () => {
                     {quote.title} 
                   </h3>
                 </article>
-              </LazyLoad>
             </a>
           ))}
         </div>
