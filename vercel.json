@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist",
+        "command": "npm run build",
+        "env": {
+          "NODE_ENV": "production"
+        },
+        "output": {
+          "clean": true
+        },
+        "postbuild": {
+          "command": "npm run postbuild",
+          "env": {
+            "BUILD_DIR": "$VERCEL_BUILD_OUTPUT_DIR"
+          }
+        },
+        
+        "files": [
+          "index.html",
+          "src/**/*.{js,jsx,ts,tsx}",
+          "tailwind.config.cjs",
+          "vite.config.js"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

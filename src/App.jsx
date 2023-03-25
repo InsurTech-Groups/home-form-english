@@ -8,11 +8,9 @@ import { userData } from './data/userData';
 import { ipAddress } from './apis/ipCollection';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-import LandingPage from './pages/LandingPage';
-import { userData as defaultUserData } from './data/userData';
 
 
-
+const LandingPage = lazy(() => import('./pages/LandingPage'));
 const InsuranceStatus = lazy(() => import('./questions/InsuranceStatus')); 
 const CurrentInsurance = lazy(() => import('./questions/CurrentInsurance'));
 const ExpireInsurance = lazy(() => import('./questions/ExpireInsurance'));
