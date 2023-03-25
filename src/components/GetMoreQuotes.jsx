@@ -1,20 +1,24 @@
 import React from 'react'
 import LazyLoad from 'react-lazyload';
+import LifeImage from '../assets/LifeImage.jpg';
+import AutoImage from '../assets/AutoImage.jpg';
+import HomeImage from '../assets/HomeImage.jpg';
 
 
 const GetMoreQuotes = () => {
 
   const quotes = [
- {id: 'life', title: 'Get A Life Insurance Quote', href: 
-      "https://www.ladderlife.com/apply/quick-start?utm_source=insurtechgroups", imageUrl: 'https://images.unsplash.com/photo-1531983412531-1f49a365ffed', subHead: 'Get a life insurance in minutes and buy online with no agent!'
+    {
+      id: 'life', title: 'Get A Life Insurance Quote', href:
+        "https://www.ladderlife.com/apply/quick-start?utm_source=insurtechgroups", imageUrl: LifeImage, subHead: 'Get a life insurance in minutes and buy online with no agent!'
     },
     
  {id: 'auto', title: 'Get A Auto Insurance Quote', href: 
-      "https://www.insurtechgroups.com/forms/auto-insurance", imageUrl: 'https://images.unsplash.com/photo-1484373030460-8de45ac8796d', subHead: 'Get a free auto insurance quote today and see how much you could save!'
+      "https://www.insurtechgroups.com/forms/auto-insurance", imageUrl: AutoImage, subHead: 'Get a free auto insurance quote today and see how much you could save!'
     },
  
     {id: 'home', title: 'Get A Home Insurance Quote', href: 
-    "https://www.insurtechgroups.com/forms/auto-insurance", imageUrl: 'https://home.insurtechgroups.com/static/media/homeLanding.aed277c55ad71d82c692.jpg', subHead: 'Get a free home insurance quote today!'
+    "https://www.insurtechgroups.com/forms/auto-insurance", imageUrl: HomeImage, subHead: 'Get a free home insurance quote today!'
   },
  
   ]
@@ -32,7 +36,8 @@ const GetMoreQuotes = () => {
         {quotes.map((quote) => (
             <a href={quote.href} key={quote.id}>
               <LazyLoad height={200} once>
-                <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl  bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+              <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl  bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+                
                   <img src={quote.imageUrl} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
                   <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                   <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
