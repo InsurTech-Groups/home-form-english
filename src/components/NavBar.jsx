@@ -1,9 +1,15 @@
 import React from 'react';
 
 import Logo from '../assets/whiteLogo.png';
+import { useNavigate } from 'react-router';
 
 export default function NavBar(props){
 
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    navigate('/');
+  }
  
 
     return(
@@ -11,7 +17,7 @@ export default function NavBar(props){
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between border-b  py-6 lg:border-none">
           <div className="flex items-center">
-            <a href="/">
+            <a onClick={goHome}>
               <img className="h-16 w-auto" src={Logo} alt="" />
             </a>
            

@@ -47,7 +47,7 @@ function ZipCode() {
 
   useEffect(() => {
 
-    const apiKey = import.meta.VITE_IPAPI_KEY;
+    const apiKey = import.meta.env.VITE_IPAPI_KEY;
 
     const req = {
       async: true,
@@ -78,6 +78,7 @@ function ZipCode() {
     })
       .catch((err) => {
         //Bugsnag.notify(err)
+        toast.error('There Seems To Be An Error With Your Location, Try Again Later')
       })
 
   }, []);
@@ -94,7 +95,7 @@ function ZipCode() {
 
     let zipTrim = zipCode.trim();
 
-    if (zipTrim === "" || zipTrim === null || zipTrim === undefined || zipTrim === 0 || zipTrim < 5 || zipCode === NaN) {
+    if (zipTrim === "" || zipTrim === null || zipTrim === undefined || zipTrim === 0 || isNaN(zipCode) || zipTrim.length < 5)  {
       toast.error("Please enter a valid zip code!");
       setIsButtonDisabled(true);
 
@@ -157,7 +158,7 @@ function ZipCode() {
   
       landingPageData(id, zipCodeValue, cityValue, stateValue, ipValue, url)
       
-      navigate('/business-name');
+      navigate('/insurance-status');
     }
 
   }
