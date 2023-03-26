@@ -38,8 +38,8 @@
   "routes": [
     {
       "src": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
-      "dest": "/"
+      "dest": "/index.html"
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
