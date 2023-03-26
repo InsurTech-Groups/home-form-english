@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import "../styles/LandingPage.css";
-import LandingHeaderPic from "../assets/HeaderImage.jpg";
+import LandingHeaderPic from "../assets/HomeImage.jpg"; 
 import { BoltIcon, GlobeAltIcon, ScaleIcon } from "@heroicons/react/24/outline";
 import Loading from '../assets/Loader.json';
 import Lottie from 'lottie-react';
