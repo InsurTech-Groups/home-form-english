@@ -7,6 +7,7 @@ import autoprefixer from 'autoprefixer'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  appType: 'spa',
 
   preview: {
     port: 3000,
