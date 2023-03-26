@@ -91,14 +91,14 @@ export default function ThankYou() {
           </p>
           <div className="mt-8">
           <a
-          href="tel:8777141714"
+          href="tel:8559071606"
           className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r 
           from-purple-500
           to-purple-800
           via-purple-400 animate-text ease-in
           px-9 py-3 text-xl font-medium text-white  sm:w-auto"
         >
-          	👉 (877) 714-1714 👈
+          	👉 (855) 907-1606 👈
         </a>
           </div>
         </div>
