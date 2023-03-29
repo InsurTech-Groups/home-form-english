@@ -113,7 +113,7 @@ let email = document.getElementById('email').value
       }
       else {
         phoneData(phone);
-      //postDataToJangle();
+        postDataToJangle();
         navigate('/submit')
       }
     })
