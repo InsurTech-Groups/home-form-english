@@ -12,6 +12,7 @@ const DOB = () => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [bDate, setBDate] = useState("");
+  const [formattedBDay, setFormattedBDay] = useState("");
   const [isSet, setIsSet] = useState(false);
   let v = userData.dob;
   const navigate = useNavigate();
@@ -36,7 +37,8 @@ const DOB = () => {
 
     const formattedDate = isMatch ? new Date(input).toISOString(0, 10).substring : "";
 
-    setBDate(formattedDate);
+    setBDate(input);
+    setFormattedBDay(formattedDate)
 
     // Compare the input date to the current date if the input is a valid date
     if (isMatch) {
@@ -58,7 +60,7 @@ const DOB = () => {
   const nextStep = (e) => {
     e.preventDefault();
     if (bDate !== "") {
-      dobData(bDate);
+      dobData(formattedBDay);
       navigate("/claims");
     }
     else {
