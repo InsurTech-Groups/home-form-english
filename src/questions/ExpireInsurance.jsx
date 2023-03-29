@@ -12,6 +12,7 @@ const ExpireInsurance = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [expDate, setExpDate] = useState("");
   const [isExpired, setIsExpired] = useState(false);
+  const [formattedExpiredDay, setFormattedExpiredDay] = useState("");
   const navigate = useNavigate();
   let company = userData.insurance_company;
   const v = userData.expiration_date;
@@ -26,7 +27,7 @@ const ExpireInsurance = () => {
   const nextStep = (e) => {
     e.preventDefault();
     if (expDate !== "") {
-      expireInsuranceData(expDate);
+      expireInsuranceData(formattedExpiredDay);
       navigate("/home-type");
     }
     else {
@@ -47,7 +48,11 @@ const ExpireInsurance = () => {
     const datePattern = /(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}/;
     const isMatch = input.match(datePattern) !== null;
 
+    const formattedDate = isMatch ? new Date(input).toISOString().substring(0, 10) : "";
+
+    
     setExpDate(input);
+    setFormattedExpiredDay(formattedDate);
 
     // Compare the input date to the current date if the input is a valid date
     if (isMatch) {

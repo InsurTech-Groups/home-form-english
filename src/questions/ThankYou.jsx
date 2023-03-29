@@ -1,15 +1,18 @@
-import React from 'react';
-import Lottie from "lottie-react";
-import BusinessInsurance from '../assets/BusinessInsurance.json';
+import {useEffect} from 'react';
 import "../styles/forms.css";
 import Agent from '../assets/agent.jpg';
 import GetMoreQuotes from '../components/GetMoreQuotes';
 import WhyUsFeatures from '../components/WhyUsFeatures';
+import { userData } from '../data/userData';
 
 
 
 export default function ThankYou() {
 
+
+  useEffect(() => {
+    console.log('user data', userData)
+  }, []);
 
   //TODO:
     // Get timezone and dynamically show

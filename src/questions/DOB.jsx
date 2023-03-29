@@ -35,8 +35,8 @@ const DOB = () => {
     const datePattern = /(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}/;
     const isMatch = input.match(datePattern) !== null;
 
-    const formattedDate = isMatch ? new Date(input).toISOString().substring(0,10) : "";
-
+    const formattedDate = isMatch ? new Date(input).toISOString().substring(0, 10) : "";
+    
     setBDate(input);
     setFormattedBDay(formattedDate)
 
@@ -61,6 +61,7 @@ const DOB = () => {
     e.preventDefault();
     if (bDate !== "") {
       dobData(formattedBDay);
+    
       navigate("/claims");
     }
     else {
