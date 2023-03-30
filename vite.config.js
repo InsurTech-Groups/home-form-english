@@ -23,7 +23,6 @@ export default defineConfig({
     ssr(),
   ],
   appType: 'spa',
-
   preview: {
     port: 3000,
     open: true,
