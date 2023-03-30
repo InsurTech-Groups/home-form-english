@@ -5,7 +5,7 @@ import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import { terser } from 'rollup-plugin-terser'
 import imageminPlugin from 'vite-plugin-imagemin'
-import ssr from 'vite-ssr/plugin'
+import ssr from 'vite-plugin-ssr/plugin'
 
 
 // https://vitejs.dev/config/
