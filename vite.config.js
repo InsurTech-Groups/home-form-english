@@ -3,10 +3,23 @@ import react from '@vitejs/plugin-react'
 
 import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
+import { terser } from 'rollup-plugin-terser'
+import imageminPlugin from 'vite-plugin-imagemin'
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(), tailwindcss(),
+    imageminPlugin({
+      gifsicle: { optimizationLevel: 3, interlaced: true },
+      mozjpeg: { quality: 75, progressive: true },
+      optipng: { optimizationLevel: 7 },
+      pngquant: { quality: [0.75, 0.9], speed: 1 },
+      svgo: { plugins: [{ removeViewBox: false }] },
+      cache: true,
+    })
+  ],
   appType: 'spa',
 
   preview: {
@@ -17,18 +30,24 @@ export default defineConfig({
   optimizeDeps: {
     include: ['linked-dep'],
   },
+  mode: 'production',
   build: {
+    sourcemap: true,
     commonjsOptions: {
       include: [/linked-dep/, /node_modules/],
     },
 
     rollupOptions: {
-      output:{
-          manualChunks(id) {
-              if (id.includes('node_modules')) {
-                  return id.toString().split('node_modules/')[1].split('/')[0].toString();
-              }
+      plugins: [terser()],
+      output: {
+        manualChunks(id) {
+          if (id.includes('/src/')) {
+            return 'app';
           }
+          if (id.includes('/node_modules/')) {
+            return 'vendor';
+          }
+        }
       }
   }
   },
