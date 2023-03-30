@@ -6,9 +6,16 @@ import autoprefixer from 'autoprefixer'
 import { terser } from 'rollup-plugin-terser'
 import imageminPlugin from 'vite-plugin-imagemin'
 import ssr from 'vite-plugin-ssr/plugin'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/main.jsx')
+    }
+  }, 
   plugins: [
     react(),
     tailwindcss(),
