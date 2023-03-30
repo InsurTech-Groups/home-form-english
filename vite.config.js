@@ -7,11 +7,11 @@ import { terser } from 'rollup-plugin-terser'
 import imageminPlugin from 'vite-plugin-imagemin'
 import ssr from 'vite-plugin-ssr/plugin'
 
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(), tailwindcss(),
+    react(),
+    tailwindcss(),
     imageminPlugin({
       gifsicle: { optimizationLevel: 3, interlaced: true },
       mozjpeg: { quality: 75, progressive: true },
@@ -21,7 +21,6 @@ export default defineConfig({
       cache: true,
     }),
     ssr(),
-
   ],
   appType: 'spa',
 
@@ -59,7 +58,7 @@ export default defineConfig({
           }
         }
       }
-  }
+    }
   },
 
   css: {
