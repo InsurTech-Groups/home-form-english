@@ -47,7 +47,7 @@ export default defineConfig({
 
     rollupOptions: {
       plugins: [terser()],
-        input: 'index.js',
+        input: 'main.jsx',
       output: {
         manualChunks(id) {
           if (id.includes('/src/')) {
